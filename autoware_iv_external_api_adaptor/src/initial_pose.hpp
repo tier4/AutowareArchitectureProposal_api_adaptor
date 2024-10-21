@@ -15,7 +15,7 @@
 #ifndef INITIAL_POSE_HPP_
 #define INITIAL_POSE_HPP_
 
-#include <component_interface_specs/localization.hpp>
+#include <autoware/component_interface_specs/localization.hpp>
 #include <component_interface_utils/rclcpp.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <tier4_api_utils/tier4_api_utils.hpp>

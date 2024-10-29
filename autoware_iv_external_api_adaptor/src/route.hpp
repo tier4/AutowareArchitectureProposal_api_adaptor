@@ -46,7 +46,8 @@ private:
   rclcpp::Publisher<RouteMsg>::SharedPtr pub_get_route_;
   autoware::component_interface_utils::Client<autoware_ad_api::routing::ClearRoute>::SharedPtr
     cli_clear_route_;
-  autoware::component_interface_utils::Client<autoware_ad_api::routing::SetRoute>::SharedPtr cli_set_route_;
+  autoware::component_interface_utils::Client<autoware_ad_api::routing::SetRoute>::SharedPtr
+    cli_set_route_;
   autoware::component_interface_utils::Subscription<autoware_ad_api::routing::Route>::SharedPtr
     sub_get_route_;
 

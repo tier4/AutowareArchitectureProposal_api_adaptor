@@ -43,7 +43,7 @@ Route::Route(const rclcpp::NodeOptions & options) : Node("external_api_route", o
 
   // adapi
   {
-    const auto adaptor = component_interface_utils::NodeAdaptor(this);
+    const auto adaptor = autoware::component_interface_utils::NodeAdaptor(this);
     adaptor.init_cli(cli_clear_route_);
     adaptor.init_cli(cli_set_route_);
     adaptor.init_sub(sub_get_route_, this, &Route::onRoute);
@@ -66,7 +66,7 @@ void Route::setRoute(
     *req = converter::convert(*request);
     const auto res = cli_set_route_->call(req);
     response->status = converter::convert(res->status);
-  } catch (const component_interface_utils::ServiceException & error) {
+  } catch (const autoware::component_interface_utils::ServiceException & error) {
     response->status = tier4_api_utils::response_error(error.what());
   }
 }
@@ -79,7 +79,7 @@ void Route::clearRoute(
     const auto req = std::make_shared<autoware_ad_api::routing::ClearRoute::Service::Request>();
     const auto res = cli_clear_route_->call(req);
     response->status = converter::convert(res->status);
-  } catch (const component_interface_utils::ServiceException & error) {
+  } catch (const autoware::component_interface_utils::ServiceException & error) {
     response->status = tier4_api_utils::response_error(error.what());
   }
 }

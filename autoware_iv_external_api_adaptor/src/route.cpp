@@ -62,7 +62,7 @@ void Route::setRoute(
   }
 
   try {
-    const auto req = std::make_shared<autoware_ad_api::routing::SetRoute::Service::Request>();
+    const auto req = std::make_shared<autoware_adapi::routing::SetRoute::Service::Request>();
     *req = converter::convert(*request);
     const auto res = cli_set_route_->call(req);
     response->status = converter::convert(res->status);
@@ -76,7 +76,7 @@ void Route::clearRoute(
   const tier4_external_api_msgs::srv::ClearRoute::Response::SharedPtr response)
 {
   try {
-    const auto req = std::make_shared<autoware_ad_api::routing::ClearRoute::Service::Request>();
+    const auto req = std::make_shared<autoware_adapi::routing::ClearRoute::Service::Request>();
     const auto res = cli_clear_route_->call(req);
     response->status = converter::convert(res->status);
   } catch (const autoware::component_interface_utils::ServiceException & error) {
@@ -84,7 +84,7 @@ void Route::clearRoute(
   }
 }
 
-void Route::onRoute(const autoware_ad_api::routing::Route::Message::ConstSharedPtr message)
+void Route::onRoute(const autoware_adapi::routing::Route::Message::ConstSharedPtr message)
 {
   if (!message->data.empty()) {
     pub_get_route_->publish(converter::convert(*message));

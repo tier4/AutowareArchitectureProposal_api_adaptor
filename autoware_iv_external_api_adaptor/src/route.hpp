@@ -16,7 +16,7 @@
 #define ROUTE_HPP_
 
 #include "autoware/component_interface_utils/rclcpp.hpp"
-#include "autoware_adapi_spec/routing.hpp"
+#include "autoware_adapi_specs/routing.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "tier4_api_utils/tier4_api_utils.hpp"
 

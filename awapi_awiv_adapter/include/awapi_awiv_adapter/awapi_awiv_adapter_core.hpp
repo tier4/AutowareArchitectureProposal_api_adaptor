@@ -128,7 +128,6 @@ private:
     const autoware_system_msgs::msg::HazardStatusStamped::ConstSharedPtr msg_ptr);
   void callbackVelocityFactor(
     const autoware_adapi_v1_msgs::msg::VelocityFactorArray::ConstSharedPtr msg_ptr);
-  void callbackStopReason(const tier4_planning_msgs::msg::StopReasonArray::ConstSharedPtr msg_ptr);
   void callbackV2XCommand(
     const tier4_v2x_msgs::msg::InfrastructureCommandArray::ConstSharedPtr msg_ptr);
   void callbackV2XState(

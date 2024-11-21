@@ -91,8 +91,6 @@ AutowareIvAdapter::AutowareIvAdapter()
     this->create_subscription<autoware_adapi_v1_msgs::msg::VelocityFactorArray>(
       "input/velocity_factors", 100,
       std::bind(&AutowareIvAdapter::callbackVelocityFactor, this, _1));
-  sub_stop_reason_ = this->create_subscription<tier4_planning_msgs::msg::StopReasonArray>(
-    "input/stop_reason", 100, std::bind(&AutowareIvAdapter::callbackStopReason, this, _1));
   sub_v2x_command_ = this->create_subscription<tier4_v2x_msgs::msg::InfrastructureCommandArray>(
     "input/v2x_command", 100, std::bind(&AutowareIvAdapter::callbackV2XCommand, this, _1));
   sub_v2x_state_ = this->create_subscription<tier4_v2x_msgs::msg::VirtualTrafficLightStateArray>(
@@ -267,12 +265,6 @@ void AutowareIvAdapter::callbackVelocityFactor(
   const autoware_adapi_v1_msgs::msg::VelocityFactorArray::ConstSharedPtr msg_ptr)
 {
   aw_info_.stop_reason_ptr = velocity_factor_converter_->updateStopReasonArray(msg_ptr);
-}
-
-void AutowareIvAdapter::callbackStopReason(
-  const tier4_planning_msgs::msg::StopReasonArray::ConstSharedPtr msg_ptr)
-{
-  aw_info_.stop_reason_ptr = stop_reason_aggregator_->updateStopReasonArray(msg_ptr, aw_info_);
 }
 
 void AutowareIvAdapter::callbackV2XCommand(

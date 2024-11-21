@@ -23,6 +23,7 @@
 #include "awapi_awiv_adapter/awapi_stop_reason_aggregator.hpp"
 #include "awapi_awiv_adapter/awapi_v2x_aggregator.hpp"
 #include "awapi_awiv_adapter/awapi_vehicle_state_publisher.hpp"
+#include "awapi_awiv_adapter/awapi_velocity_factor_converter.hpp"
 
 #include <rclcpp/rclcpp.hpp>
 
@@ -74,6 +75,8 @@ private:
   rclcpp::Subscription<autoware_adapi_v1_msgs::msg::MrmState>::SharedPtr sub_emergency_;
   rclcpp::Subscription<autoware_system_msgs::msg::HazardStatusStamped>::SharedPtr
     sub_hazard_status_;
+  rclcpp::Subscription<autoware_adapi_v1_msgs::msg::VelocityFactorArray>::SharedPtr
+    sub_velocity_factor_;
   rclcpp::Subscription<tier4_planning_msgs::msg::StopReasonArray>::SharedPtr sub_stop_reason_;
   rclcpp::Subscription<tier4_v2x_msgs::msg::InfrastructureCommandArray>::SharedPtr sub_v2x_command_;
   rclcpp::Subscription<tier4_v2x_msgs::msg::VirtualTrafficLightStateArray>::SharedPtr
@@ -123,6 +126,8 @@ private:
   void callbackMrmState(const autoware_adapi_v1_msgs::msg::MrmState::ConstSharedPtr msg_ptr);
   void callbackHazardStatus(
     const autoware_system_msgs::msg::HazardStatusStamped::ConstSharedPtr msg_ptr);
+  void callbackVelocityFactor(
+    const autoware_adapi_v1_msgs::msg::VelocityFactorArray::ConstSharedPtr msg_ptr);
   void callbackStopReason(const tier4_planning_msgs::msg::StopReasonArray::ConstSharedPtr msg_ptr);
   void callbackV2XCommand(
     const tier4_v2x_msgs::msg::InfrastructureCommandArray::ConstSharedPtr msg_ptr);
@@ -156,6 +161,7 @@ private:
   AutowareInfo aw_info_;
   std::unique_ptr<AutowareIvVehicleStatePublisher> vehicle_state_publisher_;
   std::unique_ptr<AutowareIvAutowareStatePublisher> autoware_state_publisher_;
+  std::unique_ptr<AutowareIvVelocityFactorConverter> velocity_factor_converter_;
   std::unique_ptr<AutowareIvStopReasonAggregator> stop_reason_aggregator_;
   std::unique_ptr<AutowareIvV2XAggregator> v2x_aggregator_;
   std::unique_ptr<AutowareIvLaneChangeStatePublisher> lane_change_state_publisher_;

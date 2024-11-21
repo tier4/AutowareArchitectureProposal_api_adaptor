@@ -8,6 +8,7 @@ ament_auto_add_executable(awapi_awiv_adapter
   src/awapi_awiv_adapter_node.cpp
   src/awapi_awiv_adapter_core.cpp
   src/awapi_vehicle_state_publisher.cpp
+  src/awapi_velocity_factor_converter.cpp
   src/awapi_autoware_state_publisher.cpp
   src/awapi_stop_reason_aggregator.cpp
   src/awapi_v2x_aggregator.cpp
